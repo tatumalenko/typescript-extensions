@@ -2,7 +2,7 @@
   "name": "typescript-extensions",
   "version": "1.0.0",
   "description": "A mostly bad use of monkey patching to extend global types in TypeScript",
-  "main": "index.js",
+  "main": "dist/index.js",
   "types": "index.d.ts",
   "scripts": {
     "build": "tsc",
@@ -17,6 +17,10 @@
   ],
   "author": "Tatum Alenko",
   "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/tatumalenko/typescript-extensions.git"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.10",
     "@typescript-eslint/eslint-plugin": "^3.9.0",
