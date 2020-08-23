@@ -18,6 +18,10 @@ Array.prototype.isEmpty = function<T> (this: T[]): boolean {
     return this.length === 0;
 };
 
+Array.prototype.isNotEmpty = function<T> (this: T[]): boolean {
+    return !this.isEmpty();
+};
+
 Array.prototype.flatMap = function<T, E> (this: T[], mapper: (element: T) => E[]): E[] {
     let array: E[] = [];
     for (const e of this) {
@@ -26,22 +30,24 @@ Array.prototype.flatMap = function<T, E> (this: T[], mapper: (element: T) => E[]
     return array;
 };
 
-Array.prototype.first = function<T> (this: T[], filter?: (element: T) => boolean): T | undefined {
+Array.prototype.first = function<T> (this: T[], predicate?: (element: T) => boolean): T | undefined {
     const results = this.filter((e: T) => {
-        if (filter) {
-            return filter(e);
+        if (predicate) {
+            return predicate(e);
         }
         return true;
     });
-    return results.length > 0 ? results[0] : undefined;
+    return results[0];
 };
 
-Array.prototype.last = function<T> (this: T[]): T | undefined {
-    const size = this.length;
-    if (size > 0) {
-        return this[size - 1];
-    }
-    return undefined;
+Array.prototype.last = function<T> (this: T[], predicate?: (element: T) => boolean): T | undefined {
+    const results = this.filter((e: T) => {
+        if (predicate) {
+            return predicate(e);
+        }
+        return true;
+    });
+    return results[results.length - 1];
 };
 
 Array.prototype.includesAny = function<T> (this: T[], of: T[]): boolean {
@@ -58,6 +64,10 @@ Array.prototype.at = function<T> (this: T[], index: number): T | undefined {
 
 String.prototype.isEmpty = function (this: string): boolean {
     return this.length === 0;
+};
+
+String.prototype.isNotEmpty = function (this: string): boolean {
+    return !this.isEmpty();
 };
 
 String.prototype.includesAny = function (this: string, of: string[]): boolean {
