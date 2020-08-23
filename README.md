@@ -1,20 +1,36 @@
 # typescript-extensions
 > A mostly bad use of monkey patching to extend global types in TypeScript
 
+## Getting Started
+```bash
+$ npm install typescript-extensions
+```
+
+Simply import the module in any file that gets compiled with TypeScript and it will automatically include the extensions everywhere.
+```typescript
+import "typescript-extensions";
+
+...
+```
+
+## Motivation and Examples
 This module aims to extend the global built-in types in TypeScript (namely `String` and `Array`). Some may ask "is this good practice?", the answer is "no". Some may also ask "does it make it easier more fun to write code", the answer is "100%". For example, say you want to filter out any nullables (that is, `undefined` and `null` values) of an array and then determine if any values remain. This is the code using no extensions:
 ```typescript
+// Without extensions
 const names = [ "Tatum", "Mike", undefined, "Jeremy", null, "Andrew", undefined ];
 const hasNames = names.filter((name) => name !== undefined && name !== null).length !== 0
 ```
 
 With global type extensions, the code becomes much clearer:
 ```typescript
+// With extensions
 const names = [ "Tatum", "Mike", undefined, "Jeremy", null, "Andrew", undefined ];
 const hasNames = names.filterNotNone().isNotEmpty();
 ```
 
 Another classic example is array indexing. TypeScript decided to leave array indexing unsafe in the sense that accessing an array index with no value returns `undefined` at run-time but the compiler infers a non-nullable type:
 ```typescript
+// Without extensions
 const names = [ "Tatum", "Mike", "Jeremy", "Andrew" ];
 const secondName = names[1]; // OK => "Mike"
 const sixthName = names[5]; // OK => undefined
@@ -23,6 +39,7 @@ const sixthNameIncludesMik = sixthName.includes("Mik"); // BAD => TypeError: Can
 
 With `Array.at(number)`, you can leverage the type system safely since TypeScript knows that array indexing using `at` is a nullable type at compile-time forcing you to chain optionals:
 ```typescript
+// With extensions
 const names = [ "Tatum", "Mike", "Jeremy", "Andrew" ];
 const secondName = names.at(1); // OK => "Mike"
 const sixthName = names.at(5); // OK => undefined
@@ -32,6 +49,7 @@ const sixthNameIncludesMik = sixthName?.includes("Mik"); // OK => undefined
 
 Another extremely common use case is to retrieve the first or last element of an array. Again, since array indexing is unsafe by default, it can become cumbersome to write safe code for this:
 ```typescript
+// Without extensions
 const names = [ "Tatum", "Mike", "Jeremy", "Andrew" ];
 const predicate = (name: string) => name.length > 3 && name.includes("Mik")
 const firstNameIncludesMik = names[0] && names[0].includes("Mik");
@@ -42,6 +60,7 @@ const runTimeUnsafe = lastNameThatSatisfiesPredicate.includes("T"); // BAD => Oo
 ```
 
 ```typescript
+// With extensions
 const names = [ "Tatum", "Mike", "Jeremy", "Andrew" ];
 const predicate = (name: string) => name.length > 3 && name.includes("Mik")
 const firstNameIncludesMik = names.first()?.includes("Mik");
