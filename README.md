@@ -1,7 +1,7 @@
 # typescript-extensions
 > A mostly bad use of monkey patching to extend global types in TypeScript
 
-This module aims to extend the global built-in types in TypeScript (namely `String` and `Array`). Some may ask "is this good practice?", the answer is "no". Some may also ask "does it make it easier more fun to write code", the answer is "100%". For example, say you want to filter out any nullable (that is, `undefined` and `null` values) of an array and then determine if any values remain. This is the code using no extensions:
+This module aims to extend the global built-in types in TypeScript (namely `String` and `Array`). Some may ask "is this good practice?", the answer is "no". Some may also ask "does it make it easier more fun to write code", the answer is "100%". For example, say you want to filter out any nullables (that is, `undefined` and `null` values) of an array and then determine if any values remain. This is the code using no extensions:
 ```typescript
 const names = [ "Tatum", "Mike", undefined, "Jeremy", null, "Andrew", undefined ];
 const hasNames = names.filter((name) => name !== undefined && name !== null).length !== 0
