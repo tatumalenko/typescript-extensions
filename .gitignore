@@ -1,0 +1,4 @@
+**/launch.json
+dist
+node_modules
+processes.json

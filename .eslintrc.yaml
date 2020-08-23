@@ -1,0 +1,117 @@
+parser: "@typescript-eslint/parser"
+plugins:
+  - "@typescript-eslint"
+extends:
+  - eslint:all
+parserOptions:
+  ecmaVersion: 2018
+  sourceType: module
+env:
+  node: true
+  es6: true
+rules:
+  no-restricted-syntax:
+    - off
+  sort-keys:
+    - off
+  no-unused-vars:
+    - off
+  one-var:
+    - off
+  no-ternary:
+    - off
+  no-magic-numbers:
+    - off
+  sort-imports:
+    - off
+  no-await-in-loop:
+    - off
+  complexity:
+    - off
+  init-declarations:
+    - off
+  no-undefined:
+    - off
+  padded-blocks:
+    - off
+  max-statements:
+    - off
+  max-lines-per-function:
+    - off
+  no-confusing-arrow:
+    - error
+    - allowParens: true
+  no-extra-parens:
+    - off
+  no-implicit-coercion:
+    - off
+  dot-location:
+    - off
+  max-statements-per-line:
+    - error
+    - max: 2
+  array-element-newline:
+    - off
+  no-process-env:
+    - off
+  require-unicode-regexp:
+    - off
+  brace-style:
+    - error
+    - 1tbs
+    - allowSingleLine: true
+  object-curly-spacing:
+    - error
+    - always
+  array-bracket-spacing:
+    - error
+    - always
+  computed-property-spacing:
+    - error
+    - never
+  no-underscore-dangle:
+    - off
+  no-undef:
+    - off
+  multiline-ternary:
+    - off
+  no-negated-condition:
+    - off
+  no-inline-comments:
+    - off
+  array-callback-return:
+    - off
+  no-sync:
+    - off
+  no-warning-comments:
+    - off
+  line-comment-position:
+    - off
+  max-len:
+    - warn
+    - 120
+  max-lines:
+    - off
+  quote-props:
+    - off
+  no-multiple-empty-lines:
+    - error
+    - max: 1
+  space-before-function-paren:
+    - off
+  no-continue:
+    - off
+  class-methods-use-this:
+    - off
+  id-length:
+    - off
+  func-style:
+    - warn
+    - declaration
+  function-call-argument-newline:
+    - error
+    - consistent
+  semi:
+    - off
+  "@typescript-eslint/semi":
+    - error
