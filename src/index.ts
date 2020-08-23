@@ -1,6 +1,5 @@
 /* eslint-disable func-names */
 /* eslint-disable no-extend-native */
-import "../index.d.ts";
 
 export function notUndefined<T>(x: T | undefined): x is T {
     return x !== undefined;
@@ -12,6 +11,25 @@ export function notNull<T>(x: T | null): x is T {
 
 export function notNone<T>(x: T | undefined | null): x is T {
     return notUndefined(x) && notNull(x);
+}
+
+declare global {
+    interface Array<T> {
+        isEmpty(this: T[]): boolean;
+        isNotEmpty(this: T[]): boolean;
+        flatMap<E>(this: T[], mapper: (element: T) => E[]): E[];
+        first(this: T[], predicate?: (element: T) => boolean): T | undefined;
+        last(this: T[], predicate?: (element: T) => boolean): T | undefined;
+        includesAny(this: T[], of: T[]): boolean;
+        filterNotNone(this: (T | undefined | null)[]): NonNullable<T>[];
+        at(this: T[], index: number): T | undefined;
+    }
+    interface String {
+        isEmpty(this: string): boolean;
+        isNotEmpty(this: string): boolean;
+        includesAny(this: string, of: string[]): boolean;
+        splitOnceLast(this: string, using: string): [string, string];
+    }
 }
 
 Array.prototype.isEmpty = function<T> (this: T[]): boolean {

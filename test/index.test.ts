@@ -1,5 +1,4 @@
 /* eslint-disable spaced-comment */
-/// <reference path="../index.d.ts" />
 import "../src/index";
 
 declare global {
