@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A mostly bad use of monkey patching to extend global types in TypeScript",
   "main": "dist/index.js",
-  "types": "index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest --config=jest.config.json",
